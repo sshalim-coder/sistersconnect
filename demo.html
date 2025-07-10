@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SistersConnect - Demo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafe 0%, #e8f5e8 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2d5016;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            font-size: 18px;
+            color: #5d7c47;
+            margin-bottom: 16px;
+        }
+        .user-info {
+            background: #e8f5e8;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+        .user-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d5016;
+            margin-bottom: 4px;
+        }
+        .user-details {
+            font-size: 14px;
+            color: #5d7c47;
+        }
+        .find-button {
+            background: #4a7c59;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            width: 100%;
+            margin-bottom: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(74,124,89,0.3);
+        }
+        .match-card {
+            background: white;
+            border: 1px solid #e8f5e8;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .match-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2d5016;
+            margin-bottom: 8px;
+        }
+        .match-score {
+            font-size: 16px;
+            font-weight: 600;
+            color: #4a7c59;
+            margin-bottom: 12px;
+        }
+        .breakdown-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d5016;
+            margin-bottom: 8px;
+        }
+        .breakdown-item {
+            font-size: 12px;
+            color: #5d7c47;
+            margin-bottom: 4px;
+        }
+        .reasons {
+            margin-top: 12px;
+        }
+        .reason {
+            font-size: 12px;
+            color: #5d7c47;
+            margin-bottom: 2px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 12px;
+            color: #8a9a8a;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">SistersConnect</div>
+            <div class="subtitle">Intelligent Islamic Matching</div>
+            
+            <div class="user-info">
+                <div class="user-text">As-salamu alaykum, Aisha!</div>
+                <div class="user-details">📍 New York • 🕌 intermediate level • 👥 28 years old</div>
+            </div>
+        </div>
+
+        <button class="find-button">Find Compatible Sisters</button>
+
+        <div>
+            <div style="font-size: 20px; font-weight: bold; color: #2d5016; margin-bottom: 16px; text-align: center;">
+                Found 2 Compatible Sisters
+            </div>
+            
+            <div class="match-card">
+                <div class="match-title">Match #1</div>
+                <div class="match-score">Compatibility: 87.3%</div>
+                
+                <div>
+                    <div class="breakdown-title">Compatibility Breakdown:</div>
+                    <div class="breakdown-item">🎯 Interests: 85.2%</div>
+                    <div class="breakdown-item">📍 Location: 100.0%</div>
+                    <div class="breakdown-item">👥 Age: 95.0%</div>
+                    <div class="breakdown-item">🕌 Islamic: 92.5%</div>
+                    <div class="breakdown-item">💬 Language: 80.0%</div>
+                </div>
+
+                <div class="reasons">
+                    <div class="breakdown-title">Why you might connect:</div>
+                    <div class="reason">• You share many common interests</div>
+                    <div class="reason">• You have similar Islamic practice levels</div>
+                    <div class="reason">• You live in the same city</div>
+                    <div class="reason">• You are in similar age groups</div>
+                    <div class="reason">• You speak the same languages</div>
+                </div>
+            </div>
+
+            <div class="match-card">
+                <div class="match-title">Match #2</div>
+                <div class="match-score">Compatibility: 78.9%</div>
+                
+                <div>
+                    <div class="breakdown-title">Compatibility Breakdown:</div>
+                    <div class="breakdown-item">🎯 Interests: 75.3%</div>
+                    <div class="breakdown-item">📍 Location: 88.0%</div>
+                    <div class="breakdown-item">👥 Age: 80.0%</div>
+                    <div class="breakdown-item">🕌 Islamic: 95.0%</div>
+                    <div class="breakdown-item">💬 Language: 70.0%</div>
+                </div>
+
+                <div class="reasons">
+                    <div class="breakdown-title">Why you might connect:</div>
+                    <div class="reason">• You have similar Islamic practice levels</div>
+                    <div class="reason">• You live relatively close to each other</div>
+                    <div class="reason">• You have compatible lifestyles</div>
+                </div>
+
+                <div style="margin-top: 12px;">
+                    <div class="breakdown-title">Special Features:</div>
+                    <div style="font-size: 12px; color: #4a7c59; margin-bottom: 2px;">⭐ Study buddy for: Arabic language, Islamic studies</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Built with Islamic values and respect for privacy
+        </div>
+    </div>
+</body>
+</html>

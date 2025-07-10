@@ -6,6 +6,7 @@ export { MatchingService } from './services/matching-service';
 // Algorithms
 export { CompatibilityScorer } from './matching/algorithms/compatibility-scorer';
 export { SocialGraphAlgorithm } from './matching/algorithms/social-graph';
+export { MLBehaviorTracker } from './matching/algorithms/ml-behavior-tracker';
 
 // Filters
 export { PreferenceFilter } from './matching/filters/preference-filter';

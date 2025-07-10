@@ -10,6 +10,7 @@ import {
 import { CompatibilityScorer } from '../matching/algorithms/compatibility-scorer';
 import { PreferenceFilter } from '../matching/filters/preference-filter';
 import { SocialGraphAlgorithm } from '../matching/algorithms/social-graph';
+import { MLBehaviorTracker } from '../matching/algorithms/ml-behavior-tracker';
 import { applyTimeDecay, calculatePercentileRank, applyPopularityPenalty } from '../utils/scoring';
 
 /**
@@ -20,6 +21,7 @@ export class MatchingService {
   private compatibilityScorer: CompatibilityScorer;
   private preferenceFilter: PreferenceFilter;
   private socialGraph: SocialGraphAlgorithm;
+  private mlTracker: MLBehaviorTracker;
   private matchCache: Map<string, MatchScore[]>;
   private cacheExpiry: Map<string, number>;
 
@@ -27,6 +29,7 @@ export class MatchingService {
     this.compatibilityScorer = new CompatibilityScorer();
     this.preferenceFilter = new PreferenceFilter();
     this.socialGraph = new SocialGraphAlgorithm();
+    this.mlTracker = new MLBehaviorTracker();
     this.matchCache = new Map();
     this.cacheExpiry = new Map();
   }
@@ -314,8 +317,66 @@ export class MatchingService {
   }
 
   /**
-   * Clear cache for a user (call when user profile changes)
+   * Get the ML behavior tracker for advanced analytics
    */
+  public getMLTracker(): MLBehaviorTracker {
+    return this.mlTracker;
+  }
+
+  /**
+   * Enhanced match finding with ML improvements
+   */
+  public async findMatchesWithML(
+    currentUser: UserProfile,
+    allUsers: UserProfile[],
+    preferences: MatchingPreferences,
+    options: {
+      allConnections?: Connection[];
+      userBehavior?: UserBehavior;
+      allUserBehaviors?: Map<string, UserBehavior>;
+      communities?: IslamicCommunity[];
+      events?: CommunityEvent[];
+      limit?: number;
+      useCache?: boolean;
+    } = {}
+  ): Promise<MatchScore[]> {
+    const {
+      allConnections = [],
+      userBehavior,
+      allUserBehaviors = new Map(),
+      communities = [],
+      events = [],
+      limit = 20,
+      useCache = true
+    } = options;
+
+    // Get base matches
+    const baseMatches = await this.findMatches(currentUser, allUsers, preferences, {
+      allConnections,
+      userBehavior,
+      communities,
+      events,
+      limit: limit * 2, // Get more candidates for ML filtering
+      useCache
+    });
+
+    // Apply ML enhancements if behavior data is available
+    if (userBehavior && allUserBehaviors.size > 0) {
+      const enhancedMatches = this.mlTracker.adjustScoresWithML(
+        baseMatches,
+        currentUser.personalInfo.id,
+        userBehavior,
+        allUserBehaviors
+      );
+
+      // Re-sort and limit results
+      return enhancedMatches
+        .sort((a, b) => b.totalScore - a.totalScore)
+        .slice(0, limit);
+    }
+
+    return baseMatches.slice(0, limit);
+  }
   public clearCache(userId?: string): void {
     if (userId) {
       const keysToDelete = Array.from(this.matchCache.keys()).filter(key => 
