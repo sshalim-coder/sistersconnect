@@ -49,16 +49,16 @@ const MainTabs = () => (
       },
     }}
   >
-    <Tab.Screen 
-      name="Home" 
+    <Tab.Screen
+      name="Home"
       component={HomeScreen}
       options={{
         tabBarLabel: 'Home',
         title: 'SistersConnect',
       }}
     />
-    <Tab.Screen 
-      name="Profile" 
+    <Tab.Screen
+      name="Profile"
       component={ProfileScreen}
       options={{
         tabBarLabel: 'Profile',

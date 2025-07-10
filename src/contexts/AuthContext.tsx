@@ -1,5 +1,10 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
-import { AuthState, AuthContextType, LoginCredentials, SignUpData } from '../types/auth';
+import {
+  AuthState,
+  AuthContextType,
+  LoginCredentials,
+  SignUpData,
+} from '../types/auth';
 import { AuthService } from '../services/authService';
 
 // Initial state
@@ -43,7 +48,9 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Provider component
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [authState, dispatch] = useReducer(authReducer, initialState);
 
   // Check for existing authentication on app start

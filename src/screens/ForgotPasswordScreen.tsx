@@ -18,12 +18,14 @@ interface ForgotPasswordScreenProps {
   navigation: any;
 }
 
-export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({ navigation }) => {
+export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({
+  navigation,
+}) => {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isEmailSent, setIsEmailSent] = useState(false);
-  
+
   const { forgotPassword } = useAuth();
 
   const validateForm = (): boolean => {
@@ -47,7 +49,10 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({ navi
         [{ text: 'OK' }]
       );
     } catch (error) {
-      Alert.alert('Error', error instanceof Error ? error.message : 'An error occurred');
+      Alert.alert(
+        'Error',
+        error instanceof Error ? error.message : 'An error occurred'
+      );
     } finally {
       setIsLoading(false);
     }
@@ -67,21 +72,27 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({ navi
               We've sent password reset instructions to {email}
             </Text>
             <Text style={styles.successSubMessage}>
-              Please check your email and follow the instructions to reset your password.
+              Please check your email and follow the instructions to reset your
+              password.
             </Text>
-            
-            <TouchableOpacity style={styles.backButton} onPress={navigateToLogin}>
+
+            <TouchableOpacity
+              style={styles.backButton}
+              onPress={navigateToLogin}
+            >
               <Text style={styles.backButtonText}>Back to Sign In</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity 
+            <TouchableOpacity
               style={styles.resendContainer}
               onPress={() => {
                 setIsEmailSent(false);
                 setEmail('');
               }}
             >
-              <Text style={styles.resendText}>Didn't receive the email? Try again</Text>
+              <Text style={styles.resendText}>
+                Didn't receive the email? Try again
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -98,14 +109,15 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({ navi
         <View style={styles.content}>
           <Text style={styles.title}>Forgot Password?</Text>
           <Text style={styles.subtitle}>
-            Enter your email address and we'll send you instructions to reset your password.
+            Enter your email address and we'll send you instructions to reset
+            your password.
           </Text>
 
           <View style={styles.form}>
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Email</Text>
               <TextInput
-                style={[styles.input, emailError && styles.inputError]}
+                style={[styles.input, emailError ? styles.inputError : null]}
                 value={email}
                 onChangeText={(text) => {
                   setEmail(text);
@@ -122,19 +134,29 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({ navi
             </View>
 
             <TouchableOpacity
-              style={[styles.resetButton, isLoading && styles.resetButtonDisabled]}
+              style={[
+                styles.resetButton,
+                isLoading && styles.resetButtonDisabled,
+              ]}
               onPress={handleForgotPassword}
               disabled={isLoading}
             >
               {isLoading ? (
                 <ActivityIndicator color="#fff" />
               ) : (
-                <Text style={styles.resetButtonText}>Send Reset Instructions</Text>
+                <Text style={styles.resetButtonText}>
+                  Send Reset Instructions
+                </Text>
               )}
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.backToLoginContainer} onPress={navigateToLogin}>
-              <Text style={styles.backToLoginText}>Remember your password? Sign In</Text>
+            <TouchableOpacity
+              style={styles.backToLoginContainer}
+              onPress={navigateToLogin}
+            >
+              <Text style={styles.backToLoginText}>
+                Remember your password? Sign In
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

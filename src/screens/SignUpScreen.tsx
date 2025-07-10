@@ -12,7 +12,12 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { useAuth } from '../contexts/AuthContext';
-import { validateEmail, validatePassword, validateConfirmPassword, validateName } from '../utils/validation';
+import {
+  validateEmail,
+  validatePassword,
+  validateConfirmPassword,
+  validateName,
+} from '../utils/validation';
 
 interface SignUpScreenProps {
   navigation: any;
@@ -25,16 +30,16 @@ export const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
     password: '',
     confirmPassword: '',
   });
-  
+
   const [errors, setErrors] = useState<{
     name?: string;
     email?: string;
     password?: string;
     confirmPassword?: string;
   }>({});
-  
+
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const { signUp } = useAuth();
 
   const updateFormData = (field: string, value: string) => {
@@ -47,27 +52,30 @@ export const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
 
   const validateForm = (): boolean => {
     const newErrors: typeof errors = {};
-    
+
     const nameError = validateName(formData.name);
     if (nameError) {
       newErrors.name = nameError;
     }
-    
+
     const emailError = validateEmail(formData.email);
     if (emailError) {
       newErrors.email = emailError;
     }
-    
+
     const passwordError = validatePassword(formData.password);
     if (passwordError) {
       newErrors.password = passwordError;
     }
-    
-    const confirmPasswordError = validateConfirmPassword(formData.password, formData.confirmPassword);
+
+    const confirmPasswordError = validateConfirmPassword(
+      formData.password,
+      formData.confirmPassword
+    );
     if (confirmPasswordError) {
       newErrors.confirmPassword = confirmPasswordError;
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -86,7 +94,10 @@ export const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
         confirmPassword: formData.confirmPassword,
       });
     } catch (error) {
-      Alert.alert('Sign Up Failed', error instanceof Error ? error.message : 'An error occurred');
+      Alert.alert(
+        'Sign Up Failed',
+        error instanceof Error ? error.message : 'An error occurred'
+      );
     } finally {
       setIsLoading(false);
     }
@@ -104,26 +115,30 @@ export const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.content}>
           <Text style={styles.title}>Join SistersConnect</Text>
-          <Text style={styles.subtitle}>Create your account to start connecting with amazing Muslim sisters</Text>
+          <Text style={styles.subtitle}>
+            Create your account to start connecting with amazing Muslim sisters
+          </Text>
 
           <View style={styles.form}>
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Full Name</Text>
               <TextInput
-                style={[styles.input, errors.name && styles.inputError]}
+                style={[styles.input, errors.name ? styles.inputError : null]}
                 value={formData.name}
                 onChangeText={(text) => updateFormData('name', text)}
                 placeholder="Enter your full name"
                 autoCapitalize="words"
                 autoCorrect={false}
               />
-              {errors.name && <Text style={styles.errorText}>{errors.name}</Text>}
+              {errors.name && (
+                <Text style={styles.errorText}>{errors.name}</Text>
+              )}
             </View>
 
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Email</Text>
               <TextInput
-                style={[styles.input, errors.email && styles.inputError]}
+                style={[styles.input, errors.email ? styles.inputError : null]}
                 value={formData.email}
                 onChangeText={(text) => updateFormData('email', text)}
                 placeholder="Enter your email"
@@ -131,13 +146,18 @@ export const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
                 autoCapitalize="none"
                 autoCorrect={false}
               />
-              {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
+              {errors.email && (
+                <Text style={styles.errorText}>{errors.email}</Text>
+              )}
             </View>
 
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Password</Text>
               <TextInput
-                style={[styles.input, errors.password && styles.inputError]}
+                style={[
+                  styles.input,
+                  errors.password ? styles.inputError : null,
+                ]}
                 value={formData.password}
                 onChangeText={(text) => updateFormData('password', text)}
                 placeholder="Create a strong password"
@@ -145,7 +165,9 @@ export const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
                 autoCapitalize="none"
                 autoCorrect={false}
               />
-              {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
+              {errors.password && (
+                <Text style={styles.errorText}>{errors.password}</Text>
+              )}
               <Text style={styles.passwordHint}>
                 Password must contain uppercase, lowercase, and a number
               </Text>
@@ -154,7 +176,10 @@ export const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Confirm Password</Text>
               <TextInput
-                style={[styles.input, errors.confirmPassword && styles.inputError]}
+                style={[
+                  styles.input,
+                  errors.confirmPassword ? styles.inputError : null,
+                ]}
                 value={formData.confirmPassword}
                 onChangeText={(text) => updateFormData('confirmPassword', text)}
                 placeholder="Confirm your password"
@@ -162,11 +187,16 @@ export const SignUpScreen: React.FC<SignUpScreenProps> = ({ navigation }) => {
                 autoCapitalize="none"
                 autoCorrect={false}
               />
-              {errors.confirmPassword && <Text style={styles.errorText}>{errors.confirmPassword}</Text>}
+              {errors.confirmPassword && (
+                <Text style={styles.errorText}>{errors.confirmPassword}</Text>
+              )}
             </View>
 
             <TouchableOpacity
-              style={[styles.signUpButton, isLoading && styles.signUpButtonDisabled]}
+              style={[
+                styles.signUpButton,
+                isLoading && styles.signUpButtonDisabled,
+              ]}
               onPress={handleSignUp}
               disabled={isLoading}
             >

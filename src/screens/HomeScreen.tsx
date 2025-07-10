@@ -47,7 +47,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
 
         <View style={styles.actionsContainer}>
           <Text style={styles.sectionTitle}>Quick Actions</Text>
-          
+
           <TouchableOpacity style={styles.actionCard}>
             <Text style={styles.actionTitle}>Find Sisters</Text>
             <Text style={styles.actionDescription}>
@@ -69,7 +69,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.actionCard} onPress={navigateToProfile}>
+          <TouchableOpacity
+            style={styles.actionCard}
+            onPress={navigateToProfile}
+          >
             <Text style={styles.actionTitle}>My Profile</Text>
             <Text style={styles.actionDescription}>
               View and edit your profile information

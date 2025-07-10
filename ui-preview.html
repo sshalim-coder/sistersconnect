@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SistersConnect - Authentication System Preview</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          sans-serif;
+        background-color: #f5f5f5;
+        color: #374151;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 400px;
+        margin: 20px auto;
+        background: white;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .title {
+        font-size: 32px;
+        font-weight: bold;
+        color: #3b82f6;
+        text-align: center;
+        margin-bottom: 8px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+        color: #6b7280;
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .label {
+        font-size: 16px;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .input {
+        width: 100%;
+        border: 1px solid #d1d5db;
+        border-radius: 12px;
+        padding: 16px;
+        font-size: 16px;
+        background: #fff;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+
+      .input:focus {
+        border-color: #3b82f6;
+      }
+
+      .input.error {
+        border-color: #ef4444;
+      }
+
+      .error-text {
+        color: #ef4444;
+        font-size: 14px;
+        margin-top: 4px;
+      }
+
+      .button {
+        width: 100%;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 18px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        margin-bottom: 24px;
+      }
+
+      .button:hover {
+        background: #2563eb;
+      }
+
+      .link {
+        color: #3b82f6;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      .home-stats {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 32px;
+      }
+
+      .stat-card {
+        flex: 1;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-number {
+        font-size: 28px;
+        font-weight: bold;
+        color: #3b82f6;
+        margin-bottom: 4px;
+      }
+
+      .stat-label {
+        font-size: 14px;
+        color: #6b7280;
+        font-weight: 500;
+      }
+
+      .action-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 12px;
+        border: 1px solid #e5e7eb;
+        cursor: pointer;
+        transition: box-shadow 0.2s;
+      }
+
+      .action-card:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .action-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 4px;
+      }
+
+      .action-description {
+        font-size: 14px;
+        color: #6b7280;
+      }
+
+      .demo-section {
+        margin-bottom: 40px;
+      }
+
+      .section-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #374151;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .greeting {
+        font-size: 24px;
+        font-weight: bold;
+        color: #374151;
+        margin-bottom: 4px;
+      }
+
+      .avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 40px;
+        background: #3b82f6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 32px;
+        font-weight: bold;
+        margin: 0 auto 16px;
+      }
+
+      .user-name {
+        font-size: 24px;
+        font-weight: bold;
+        color: #374151;
+        margin-bottom: 4px;
+        text-align: center;
+      }
+
+      .user-email {
+        font-size: 16px;
+        color: #6b7280;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-section">
+      <h1 class="section-title">SistersConnect - Authentication System</h1>
+
+      <!-- Login Screen Preview -->
+      <div class="container">
+        <h2 class="title">Welcome Back!</h2>
+        <p class="subtitle">Sign in to continue connecting with your sisters</p>
+
+        <div class="form-group">
+          <label class="label">Email</label>
+          <input
+            type="email"
+            class="input"
+            placeholder="Enter your email"
+            value="sister@example.com"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="label">Password</label>
+          <input
+            type="password"
+            class="input"
+            placeholder="Enter your password"
+          />
+        </div>
+
+        <div style="text-align: right; margin-bottom: 24px">
+          <a href="#" class="link" style="font-size: 14px">Forgot Password?</a>
+        </div>
+
+        <button class="button">Sign In</button>
+
+        <div class="text-center">
+          <span style="color: #6b7280">Don't have an account? </span>
+          <a href="#" class="link">Sign Up</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <!-- Sign Up Screen Preview -->
+      <div class="container">
+        <h2 class="title">Join SistersConnect</h2>
+        <p class="subtitle">
+          Create your account to start connecting with amazing Muslim sisters
+        </p>
+
+        <div class="form-group">
+          <label class="label">Full Name</label>
+          <input type="text" class="input" placeholder="Enter your full name" />
+        </div>
+
+        <div class="form-group">
+          <label class="label">Email</label>
+          <input type="email" class="input" placeholder="Enter your email" />
+        </div>
+
+        <div class="form-group">
+          <label class="label">Password</label>
+          <input
+            type="password"
+            class="input"
+            placeholder="Create a strong password"
+          />
+          <div style="color: #6b7280; font-size: 12px; margin-top: 4px">
+            Password must contain uppercase, lowercase, and a number
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="label">Confirm Password</label>
+          <input
+            type="password"
+            class="input"
+            placeholder="Confirm your password"
+          />
+        </div>
+
+        <button class="button">Create Account</button>
+
+        <div class="text-center">
+          <span style="color: #6b7280">Already have an account? </span>
+          <a href="#" class="link">Sign In</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <!-- Home Screen Preview -->
+      <div class="container">
+        <div class="greeting">Assalamu Alaikum, Aisha!</div>
+        <p class="subtitle">Welcome to SistersConnect</p>
+
+        <div class="home-stats">
+          <div class="stat-card">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Connections</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Messages</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Events</div>
+          </div>
+        </div>
+
+        <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 16px">
+          Quick Actions
+        </h3>
+
+        <div class="action-card">
+          <div class="action-title">Find Sisters</div>
+          <div class="action-description">
+            Discover and connect with Muslim sisters in your area
+          </div>
+        </div>
+
+        <div class="action-card">
+          <div class="action-title">Join Events</div>
+          <div class="action-description">
+            Participate in community events and gatherings
+          </div>
+        </div>
+
+        <div class="action-card">
+          <div class="action-title">Study Groups</div>
+          <div class="action-description">
+            Join Islamic study circles and learning groups
+          </div>
+        </div>
+
+        <div class="action-card">
+          <div class="action-title">My Profile</div>
+          <div class="action-description">
+            View and edit your profile information
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <!-- Profile Screen Preview -->
+      <div class="container">
+        <div class="avatar">A</div>
+        <div class="user-name">Aisha Rahman</div>
+        <div class="user-email">aisha@example.com</div>
+
+        <div style="margin-top: 32px">
+          <h3 style="font-size: 18px; font-weight: bold; margin-bottom: 16px">
+            Account Information
+          </h3>
+
+          <div style="margin-bottom: 16px">
+            <div
+              style="
+                font-size: 14px;
+                font-weight: 600;
+                color: #6b7280;
+                margin-bottom: 4px;
+              "
+            >
+              Name
+            </div>
+            <div style="font-size: 16px">Aisha Rahman</div>
+          </div>
+
+          <div style="margin-bottom: 16px">
+            <div
+              style="
+                font-size: 14px;
+                font-weight: 600;
+                color: #6b7280;
+                margin-bottom: 4px;
+              "
+            >
+              Email
+            </div>
+            <div style="font-size: 16px">aisha@example.com</div>
+          </div>
+
+          <div style="margin-bottom: 32px">
+            <div
+              style="
+                font-size: 14px;
+                font-weight: 600;
+                color: #6b7280;
+                margin-bottom: 4px;
+              "
+            >
+              Member Since
+            </div>
+            <div style="font-size: 16px">January 10, 2024</div>
+          </div>
+
+          <button
+            style="
+              background: #ef4444;
+              width: 100%;
+              border: none;
+              border-radius: 12px;
+              padding: 18px;
+              color: white;
+              font-size: 18px;
+              font-weight: 600;
+              cursor: pointer;
+            "
+          >
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

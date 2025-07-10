@@ -21,23 +21,25 @@ interface LoginScreenProps {
 export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>(
+    {}
+  );
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const { login } = useAuth();
 
   const validateForm = (): boolean => {
     const newErrors: { email?: string; password?: string } = {};
-    
+
     const emailError = validateEmail(email);
     if (emailError) {
       newErrors.email = emailError;
     }
-    
+
     if (!password) {
       newErrors.password = 'Password is required';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -51,7 +53,10 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
     try {
       await login({ email: email.trim(), password });
     } catch (error) {
-      Alert.alert('Login Failed', error instanceof Error ? error.message : 'An error occurred');
+      Alert.alert(
+        'Login Failed',
+        error instanceof Error ? error.message : 'An error occurred'
+      );
     } finally {
       setIsLoading(false);
     }
@@ -73,13 +78,15 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.content}>
           <Text style={styles.title}>Welcome Back!</Text>
-          <Text style={styles.subtitle}>Sign in to continue connecting with your sisters</Text>
+          <Text style={styles.subtitle}>
+            Sign in to continue connecting with your sisters
+          </Text>
 
           <View style={styles.form}>
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Email</Text>
               <TextInput
-                style={[styles.input, errors.email && styles.inputError]}
+                style={[styles.input, errors.email ? styles.inputError : null]}
                 value={email}
                 onChangeText={(text) => {
                   setEmail(text);
@@ -92,13 +99,18 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
                 autoCapitalize="none"
                 autoCorrect={false}
               />
-              {errors.email && <Text style={styles.errorText}>{errors.email}</Text>}
+              {errors.email && (
+                <Text style={styles.errorText}>{errors.email}</Text>
+              )}
             </View>
 
             <View style={styles.inputContainer}>
               <Text style={styles.label}>Password</Text>
               <TextInput
-                style={[styles.input, errors.password && styles.inputError]}
+                style={[
+                  styles.input,
+                  errors.password ? styles.inputError : null,
+                ]}
                 value={password}
                 onChangeText={(text) => {
                   setPassword(text);
@@ -111,15 +123,23 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ navigation }) => {
                 autoCapitalize="none"
                 autoCorrect={false}
               />
-              {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
+              {errors.password && (
+                <Text style={styles.errorText}>{errors.password}</Text>
+              )}
             </View>
 
-            <TouchableOpacity onPress={navigateToForgotPassword} style={styles.forgotPasswordContainer}>
+            <TouchableOpacity
+              onPress={navigateToForgotPassword}
+              style={styles.forgotPasswordContainer}
+            >
               <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={[styles.loginButton, isLoading && styles.loginButtonDisabled]}
+              style={[
+                styles.loginButton,
+                isLoading && styles.loginButtonDisabled,
+              ]}
               onPress={handleLogin}
               disabled={isLoading}
             >
